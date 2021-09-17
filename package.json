@@ -1,0 +1,12 @@
+{
+  "name": "optic",
+  "version": "1.0.0",
+  "description": "Web component library",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync --watch"
+  },
+  "keywords": [],
+  "author": "Jelle",
+  "license": "ISC"
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Optic App</title>
+    <style type="text/css" media="screen">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="panels">
+        <div id="live" class="live">
+            <div>
+                <hello-world/>
+                <my-list/>
+                <my-contactform/>
+                <log-button/>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" type="text/javascript"
+        charset="utf-8"></script>
+    <script type="module">
+        import { element, html } from "./optic.js"
+
+        const state = {
+            list: [
+                { amount: 10, title: 'Apple', price: 20 },
+                { amount: 10, title: 'Banana', price: 20 }
+            ]
+        }
+
+        element(
+            {
+                tag: "hello-world",
+                tempate: html`
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  `}
+        );
+
+        element(
+            {
+                tag: "my-contactform",
+                template: html`
+    <form>
+      <label>
+        Name
+        <input type="text" />
+      </label>
+      <label>
+        Email
+        <input type="text" />
+      </label>
+      <label>
+        Body
+        <input type="text" />
+      </label>
+    </form>
+  `}
+        );
+
+        element(
+            {
+                tag: "my-list",
+                template: html`
+            <div>
+    <ul>
+      <li *for="list">
+        {{item.amount}} - {{item.title}} - {{item.price}} USD
+      </li>
+    </ul>
+    <button @click="this.list.push({ amount: 10, title: 'Banana', price: 20 })">Add item</button>
+    </div>
+  `,
+                setup: () => {
+                    // const state = {
+                    //     list: [
+                    //         { amount: 10, title: 'Apple', price: 20 },
+                    //         { amount: 10, title: 'Banana', price: 20 }
+                    //     ]
+                    // }
+                    return state
+                }
+            }
+        );
+
+        element(
+            {
+                tag: "log-button",
+                template: html`
+            <div>
+    <button @click="console.log('cool')">Log</button>
+    </div>
+  `
+            }
+        );
+    </script>
+
+</body>
+
+</html>
